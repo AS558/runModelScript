@@ -1,0 +1,5 @@
+train: ../train/images
+val: ../train/images
+
+nc: 7
+names: ['Eagle', 'Elephant', 'Lion', 'Lotus', 'SCG', 'TPIPL', 'Tiger']

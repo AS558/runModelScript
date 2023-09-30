@@ -39,6 +39,11 @@ import yaml
 from torch.optim import lr_scheduler
 from tqdm import tqdm
 
+import utils
+display = utils.notebook_init()
+
+import comet_ml; comet_ml.init()
+
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
