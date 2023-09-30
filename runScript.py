@@ -1,8 +1,29 @@
 import os
+import io
 import subprocess
 import time
+import mysql.connector
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
+
+mysql_config = {
+    'user': 'your_username',
+    'password': 'your_password',
+    'host': 'localhost',
+    'database': 'your_database',
+}
+
+SCOPES = ['https://www.googleapis.com/auth/drive.file']
+SERVICE_ACCOUNT_FILE = 'your-service-account-json-file.json'
+
+conn = mysql.connector.connect(**mysql_config)
+cursor = conn.cursor()
+
+credentials = service_account.Credentials.from_service_account_file(
+    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+drive_service = build('drive', 'v3', credentials=credentials)
 
 weights_path = "./runs/train/exp4/weights/best.pt"
 image_size = 640
